@@ -1,0 +1,14 @@
+# https://atcoder.jp/contests/abc013/tasks/abc013_1
+
+s = input()
+
+if s == "A":
+  print(1)
+elif s == "B":
+  print(2)
+elif s == "C":
+  print(3)
+elif s == "D":
+  print(4)
+else:
+  print(5)
