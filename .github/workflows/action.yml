@@ -1,4 +1,6 @@
-# 参考: https://qiita.com/Broccolingual/items/bf0fa0d00920fbfda371
+# 参考
+# https://qiita.com/Broccolingual/items/bf0fa0d00920fbfda371
+# https://zenn.dev/snowcait/articles/18c9137f49e378
 
 name: Action # GitHub Actionsにつける名前。任意で良い。
 
@@ -30,9 +32,12 @@ jobs:
           git config --global user.name "Yuriko Takahashi"
           git config --global user.email yuricocoa3618@gmail.com
 
-      - name: Commit and Push # 実行した結果をプッシュして変更をレポジトリに反映
+      - name: Commit and Push # 変更があれば、実行した結果をプッシュして変更をレポジトリに反映
         run: |
           git add -A
-          git commit -m "add new file"
-          git pull
-          git push origin master
+          if ! git diff --exit-code --quiet
+          then
+            git commit -m "add new file"
+            git pull
+            git push origin master
+          fi
