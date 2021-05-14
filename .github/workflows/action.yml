@@ -27,16 +27,14 @@ jobs:
         run: |
           python scrap.py
 
-      - name: Settings # gitの設定
-        run: |
-          git config --global user.name "Yuriko Takahashi"
-          git config --global user.email yuricocoa3618@gmail.com
-
       - name: Commit and Push # 変更があれば、実行した結果をプッシュして変更をレポジトリに反映
         run: |
-          git add -A
+          git add -N .
           if ! git diff --exit-code --quiet
           then
+            git config --global user.name "Yuriko Takahashi"
+            git config --global user.email yuricocoa3618@gmail.com
+            git add -A
             git commit -m "add new file"
             git pull
             git push origin master
